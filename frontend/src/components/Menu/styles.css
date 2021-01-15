@@ -1,0 +1,26 @@
+#pesquisa {
+  padding-left: 18rem;
+}
+
+@media (max-width: 1024px) {
+  #pesquisa {
+    padding: 1.2rem;
+  }
+}
+
+form .botao-nav {
+  border-radius: 0px 8px 8px 0px;
+  color: black;
+}
+
+form .form-control {
+  border-radius: 8px 0px 0px 8px;
+}
+
+nav .navbar {
+  background-color: aquamarine;
+}
+
+.navbar img {
+  width: 16vw;
+}

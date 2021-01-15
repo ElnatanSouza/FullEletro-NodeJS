@@ -1,0 +1,73 @@
+.contato {
+  color: #a1057f;
+  text-align: left;
+  margin: 10px;
+  width: 100%;
+}
+
+#faleConos {
+  text-align: center;
+  font-size: 26px;
+  color: #a1057f;
+}
+
+.mensagem {
+  color: #a1057f;
+  margin: 10px;
+  text-align: left;
+}
+
+.botao {
+  color: white;
+  border-radius: 7px 7px 7px 7px;
+  width: 100px;
+  padding: 0.45%;
+  border: 0 solid black;
+  margin-left: 400px;
+  background-image: linear-gradient(
+    to right,
+    rgb(176, 35, 211),
+    #a1057f,
+    rgb(102, 14, 129)
+  );
+  cursor: pointer;
+}
+
+.nome {
+  width: 500px;
+}
+
+.email {
+  width: 500px;
+}
+
+.textarea {
+  width: 500px;
+  height: 150px;
+}
+
+@media (max-width: 1024px) {
+  #fale_form {
+    width: 290px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #fale_botao {
+    width: 25vw;
+    margin-left: 1px;
+  }
+}
+
+#fale_form {
+  width: 37vw;
+}
+
+#text_form {
+  width: 37vw;
+  height: 30vh;
+}
+
+#logoContato {
+  width: 3%;
+}
