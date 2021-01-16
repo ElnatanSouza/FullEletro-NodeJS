@@ -1,6 +1,8 @@
 import React from 'react';
 
 import './styles.css';
+import whatsImage from '../../assets/images/whats.png'
+import emailImage from '../../assets/images/email.png'
 
 const Contato = () => {
     const [comentario, setComentario] = React.useState([])
@@ -38,9 +40,9 @@ const Contato = () => {
             <div className="container-fluid mt-5">
                 <p className="mb-4" id="faleConos"> Fale Conosco </p>
                 <div className="lojas text-center mb-5">
-                    <img src="./img/whats.png" alt="Logo WhatsApp" title="Imagem WhatsApp" id="logoContato" />
+                    <img src={ whatsImage } alt="Logo WhatsApp" title="Imagem WhatsApp" id="logoContato" />
                         (11) 98887-9788 | | (11) 95293-5270
-                    <img src="./img/email.png" alt="Logo Email" title="Imagem Email" id="logoContato" />
+                    <img src={ emailImage } alt="Logo Email" title="Imagem Email" id="logoContato" />
                         contato@fullstackeletro.com.br || vendas@fullstackeletro.com
                 </div>
                 <form className="form-group" onSubmit={registerCommment}>

@@ -1,10 +1,11 @@
 import React from 'react';
 import './styles.css';
 import { Link, BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from '../Home';
-import Produtos from '../Produtos';
-import Lojas from '../Lojas';
-import Contato from '../Contato';
+import Home from '../../pages/Home';
+import Produtos from '../../pages/Produtos';
+import Lojas from '../../pages/Lojas';
+import Contato from '../../pages/Contato';
+import Logo from '../../assets/images/logotitle.svg'
 
 const Menu = () => {
     return (
@@ -12,7 +13,7 @@ const Menu = () => {
             <BrowserRouter>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
                     <Link className="navbar-brand" to="/">
-                        <img src="./img/logotitle.svg" alt="logo FullStack" title="Página Inicial" />
+                        <img src={ Logo } alt="logo FullStack" title="Página Inicial" />
                     </Link>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"

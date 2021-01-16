@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "API para FullEletro",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ElnatanSouza/FullEletro-NodeJS/tree/main/backend"
+  },
+  "keywords": [
+    "nodeJS",
+    "backend",
+    "npm",
+    "reactJS"
+  ],
+  "author": "Elnatan Souza",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7"
+  }
+}

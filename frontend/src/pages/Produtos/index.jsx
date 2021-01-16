@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-import './styles.css';
+import './styles.css'
 
 const Produtos = () => {
     const [produto, setProduto] = React.useState([])
 
     React.useEffect(() => {
         async function fetchData() {
-            const url = "http://localhost/fullstack_eletro/backend/prod.php";
+            const url = "http://localhost:4000/produtos"
             const response = await fetch(url)
             setProduto(await response.json())
-        } fetchData();
+        } fetchData()
     }, [])
 
     const cat = produto.map(cat => {
@@ -88,7 +88,7 @@ const Produtos = () => {
                         {produto.map(element => {
                             return (
                                 <div key={element.id_produto} className="prod card border-0 col-lg-3 col-sm-3" id={element.id_categoria} >
-                                    <img id="imgProd" className="tamanhoprod border-0 img-thumbnail" alt={""} src={'/img/' + element.imagem} onMouseOver={destaque}
+                                    <img id="imgProd" className="tamanhoprod border-0 img-thumbnail" alt={"imagem do produto"} src={'../../assets/images/' + element.imagem} onMouseOver={destaque}
                                         onMouseOut={redimensiona} />
                                     <p className="card-text"> {element.descricao_produto + " " + element.marca} </p>
                                     <p className="strike"> R$ {element.preco_real}  </p>
@@ -105,4 +105,4 @@ const Produtos = () => {
     );
 }
 
-export default Produtos;
+export default Produtos
