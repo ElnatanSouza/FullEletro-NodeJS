@@ -29,38 +29,38 @@ const Produtos = () => {
 
     const destaque = (event) => {
         if (event.target.style.width === "260px") {
-            event.target.style.width = "120px";
+            event.target.style.width = "120px"
         }
         else {
-            event.target.style.width = "260px";
+            event.target.style.width = "260px"
         }
     }
 
     const redimensiona = (event) => {
         if (event.target.style.width === "120px") {
-            event.target.style.width = "260px";
+            event.target.style.width = "260px"
         }
         else {
-            event.target.style.width = "120px";
+            event.target.style.width = "120px"
         }
     }
 
-    let produt = document.getElementsByClassName('prod');
+    let produt = document.getElementsByClassName('prod')
 
     const exibir = (event) => {
         let item = event.target.id;
         for (let i = 0; i < produt.length; i++) {
             if (item === produt[i].id) {
-                produt[i].style.display = "inline-block";
+                produt[i].style.display = "inline-block"
             } else {
-                produt[i].style.display = "none";
+                produt[i].style.display = "none"
             }
         }
     }
 
     const exibirTodos = () => {
         for (let i = 0; i < produt.length; i++) {
-            produt[i].style.display = "inline-block";
+            produt[i].style.display = "inline-block"
         }
     }
 
@@ -88,7 +88,7 @@ const Produtos = () => {
                         {produto.map(element => {
                             return (
                                 <div key={element.id_produto} className="prod card border-0 col-lg-3 col-sm-3" id={element.id_categoria} >
-                                    <img id="imgProd" className="tamanhoprod border-0 img-thumbnail" alt={"imagem do produto"} src={'../../assets/images/' + element.imagem} onMouseOver={destaque}
+                                    <img id="imgProd" className="tamanhoprod border-0 img-thumbnail" alt={"imagem do produto"} src={`./images/${element.imagem}`} onMouseOver={destaque}
                                         onMouseOut={redimensiona} />
                                     <p className="card-text"> {element.descricao_produto + " " + element.marca} </p>
                                     <p className="strike"> R$ {element.preco_real}  </p>

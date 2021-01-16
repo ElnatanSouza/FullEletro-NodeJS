@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
 import whatsImage from '../../assets/images/whats.png'
@@ -8,10 +8,14 @@ const Contato = () => {
     const [comentario, setComentario] = React.useState([])
     const [render, setRender] = React.useState(false);
     const [msg, setMsg] = React.useState(false)
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [mensagem, setMensagem] = useState('')   
+
 
     React.useEffect(() => {
         async function fetchData() {
-            const url = "http://localhost/fullstack_eletro/backend/coment.php";
+            const url = "http://localhost:4000/contato";
             const response = await fetch(url);
             setComentario(await response.json());
         }
@@ -20,11 +24,17 @@ const Contato = () => {
 
     function registerCommment(event) {
         event.preventDefault();
-        const url = "http://localhost/fullstack_eletro/backend/register-comment.php";
+        const url = "http://localhost:4000/contato";
+        let form = {
+            nome: name,
+            email: email,
+            msg: mensagem,
+        }
 
         fetch(url, {
             method: "POST",
-            body: new FormData(event.target)
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(form)
         }).then((response) => response.json())
             .then((dados) => {
                 setRender(!render);
@@ -49,13 +59,13 @@ const Contato = () => {
 
                     <h4 className="contato">
                         Nome Completo:
-                        <input id="fale_form" className="nome form-control mt-2 mb-3" type="text" name="nome" placeholder="Digite aqui seu nome" />
+                        <input id="fale_form" className="nome form-control mt-2 mb-3" type="text" name="nome" value={name} onChange={event=>setName(event.target.value)} placeholder="Digite aqui seu nome" />
                         Email:
-                        <input id="fale_form" className="email form-control mt-2 mb-3" type="email" name="email" placeholder="Digite aqui seu email" />
+                        <input id="fale_form" className="email form-control mt-2 mb-3" type="email" name="email" value={email} onChange={event=>setEmail(event.target.value)} placeholder="Digite aqui seu email" />
                     </h4>
                     <h4 className="mensagem">
                         Mensagem:
-                        <textarea id="text_form" className="textarea form-control mt-2" name="msg" placeholder="Digite sua mensagem aqui"></textarea>
+                        <textarea id="text_form" className="textarea form-control mt-2" name="msg" value={mensagem} onChange={event=>setMensagem(event.target.value)} placeholder="Digite sua mensagem aqui"></textarea>
                         <input id="fale_botao" className="botao btn text-light mt-2 mb-3" type="submit" value="Enviar" />
                     </h4>
 
