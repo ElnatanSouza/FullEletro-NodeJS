@@ -1,11 +1,13 @@
-import React from 'react';
-import './styles.css';
-import { Link, BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from '../../pages/Home';
-import Produtos from '../../pages/Produtos';
-import Lojas from '../../pages/Lojas';
-import Contato from '../../pages/Contato';
+import { Link, BrowserRouter, Switch, Route } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+
+import './styles.css'
 import Logo from '../../assets/images/logotitle.svg'
+
+const Home = lazy(() => import('../../pages/Home'))
+const Produtos = lazy(() => import('../../pages/Produtos'))
+const Lojas = lazy(() => import('../../pages/Lojas'))
+const Contato = lazy(() => import('../../pages/Contato'))
 
 const Menu = () => {
     return (
@@ -13,7 +15,7 @@ const Menu = () => {
             <BrowserRouter>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
                     <Link className="navbar-brand" to="/">
-                        <img src={ Logo } alt="logo FullStack" title="Página Inicial" />
+                        <img src={Logo} alt="logo FullStack" title="Página Inicial" />
                     </Link>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -43,16 +45,19 @@ const Menu = () => {
                     </div>
                 </nav>
                 <Switch>
-                    <Route path="/" exact component={ Home } />
-                    <Route path="/Produtos" component={ Produtos } />
-                    <Route path="/Lojas" component={ Lojas } />
-                    <Route path="/Contato" component={ Contato } />
+                    <Suspense
+                        fallback={<img src="http://dommus.com.br/homologacao/images/layout/loading.gif" alt="Loading" />}>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/Produtos" component={Produtos} />
+                        <Route path="/Lojas" component={Lojas} />
+                        <Route path="/Contato" component={Contato} />
+                    </Suspense>
                     <Route component={() => <div><h1>Page 404!</h1></div>} />
                 </Switch>
             </BrowserRouter>
         </>
 
-    );
+    )
 }
 
-export default Menu;
+export default Menu
