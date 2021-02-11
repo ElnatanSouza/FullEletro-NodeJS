@@ -1,6 +1,9 @@
-import express from 'express'
-import cors from 'cors'
-import mysql from 'mysql'
+const express = require('express')
+const cors = require('cors')
+const mysql = require('mysql')
+
+const comentario = require('./models/Contato.js')
+const conn = require('./config/mongoConn.js')
 
 const server = express()
 
@@ -27,31 +30,34 @@ server.get('/produtos', (req, res) => {
     })
 })
 
-server.get('/contato', (req, res) => {
-    const sql = "SELECT * FROM comentarios"
-    connection.query(sql, (error, result) => {
-        if (error) {
-            res.json({
-                "message": "Erro na conexão com o banco de dados!"
-            })
-        } else {
-            res.status(201).json(result)
-        }
-    })
+server.get('/contato', async (req, res) => {
+    try {
+        const result = await comentario.find()
+
+        return res.json(result)
+    } catch (err) {
+        return res.status(400).send({ error: 'Erro na listagem dos comentários!' })
+    }
 })
 
-server.post('/contato', (req, res) => {
+server.post('/contato', async (req, res) => {
     const { nome, email, msg } = req.body
-    const sql = `INSERT INTO comentarios (nome, email, msg) values ('${nome}','${email}','${msg}')`
-    connection.query(sql, (error, result) => {
-        if (error) {
-            res.json({
-                "message": "Erro na conexão com o banco de dados!"
-            })
-        } else {
-            res.status(201).json(result)
-        }
-    })
+
+    try {
+        const result = await comentario
+            .create({ nome, email, msg })
+
+        if (!comentario)
+            return res.status(400).send({ error: 'Comentario não enviado' })
+
+        return res.json(result)
+    } catch (err) {
+        res.status(400).send({ error: 'Preencha todos os campos para enviar!' })
+    }
+
 })
 
-server.listen(4000)
+const port = 4000
+server.listen(port, () => {
+    console.log('http://localhost:' + port)
+})
