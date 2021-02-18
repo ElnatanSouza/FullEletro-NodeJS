@@ -12,7 +12,6 @@ const Contato = () => {
     const [email, setEmail] = useState('')
     const [mensagem, setMensagem] = useState('')
 
-
     React.useEffect(() => {
         async function fetchData() {
             const url = "http://localhost:4000/contato"
@@ -21,7 +20,6 @@ const Contato = () => {
         }
         fetchData();
     }, [render])
-    console.log(comentario)
 
     function registerCommment(event) {
         event.preventDefault()
